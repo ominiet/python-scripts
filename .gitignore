@@ -1,0 +1,6 @@
+mycreds.txt
+cred.txt
+gmailcreds.txt
+
+.DS_Store
+*.pyc
