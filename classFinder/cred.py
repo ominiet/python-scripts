@@ -28,4 +28,4 @@ def getCreds():
 			}
 		pickle.dump(cred,fp)
 		fp.close()
-		return None
+		return cred
