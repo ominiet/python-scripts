@@ -1,0 +1,4 @@
+Congratulations!
+The Class Finder script has worked! You are now registered for your desired class. Please visit one.ufl.edu to confirm the results of this automated sign up tool
+
+Here are the log entries for the most recent runs of the script:

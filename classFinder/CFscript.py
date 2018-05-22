@@ -9,10 +9,6 @@ import traceback
 
 def searchSeats(username,password,courseCode):
 
-    # username = raw_input("Enter GatorLink Username:\t")
-    # password  = raw_input("Enter GatorLink Password:\t")
-    # courseCode = "CEN4722"
-
     driver = webdriver.Chrome()
     driver.get("http://one.uf.edu/login/")
 
@@ -20,13 +16,7 @@ def searchSeats(username,password,courseCode):
         ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body layout-row']/div[@class='layout-column flex']/md-content[@id='main']/root[@id='root']/div[@class='root-view ng-scope']/uf-login[@class='ng-scope ng-isolate-scope']/div[@id='ufLogin']/md-card[@class='md-whiteframe-2dp layout-padding _md']/md-list[@class='layout-align-center-center layout-column']/md-list-item[@class='login-item md-no-proxy _md md-clickable'][1]/button[@class='md-primary md-raised md-ink-ripple login-button md-button']")
         ele.click()
         driver.implicitly_wait(5)
-        # ele = WebDriverWait(driver, 10).until(
-        #     EC.visibility_of_element_located((By.TAG_NAME, "md-menu-item"))
-        # )
-        # ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body ng-scope layout-row']/div[@id='menu_container_0']/md-menu-content/md-menu-item[1]/button[@class='md-button md-ink-ripple']")
 
-        # ele.click()
-        # driver.implicitly_wait(0)
         ele = driver.find_element_by_id("username")
         # ele.clear()
         ele.send_keys(username)

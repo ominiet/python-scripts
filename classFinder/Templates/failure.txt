@@ -1,0 +1,4 @@
+ATTENTION!
+The class finder script has found a seat, but an issue occurred when signing up. Please visit one.ufl.edu to claim your seat.
+
+Here are the log entries for the most recent runs of the script:
