@@ -6,8 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
 from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
 import traceback
 
-
-def searchSeats(username,password,courseCode):
+def searchSeats(username,password,courseCode,registered):
 
     driver = webdriver.Chrome()
     driver.get("http://one.uf.edu/login/")
@@ -29,7 +28,7 @@ def searchSeats(username,password,courseCode):
         print "Failure at Login"
         print(ex)
         driver.close()
-        return {"id":5,"seats":""}
+        return {"id":5,"seats":"", "registered": False}
     try:
         ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body layout-row']/div[@class='layout-column flex']/md-content[@id='main']/root[@id='root']/div[@class='ng-scope']/uf-tab[@class='ng-scope ng-isolate-scope']/md-tabs[@id='ufTab']/md-tabs-content-wrapper[@class='_md']/md-tab-content[@id='tab-content-4']/div[@class='ng-scope ng-isolate-scope']/div[@class='ng-scope']/uf-panel[@class='ng-isolate-scope']/div[@id='ufPanel']/md-grid-list[@class='ng-scope ng-isolate-scope _md']/md-grid-tile[@class='ng-scope ng-isolate-scope'][2]/figure/uf-card[@class='uf-card card-wrapper ng-scope ng-isolate-scope']/div[@class='card-wrapper']/div[@class='card-wrapper ng-scope']/myschedule-card[@class='ng-scope ng-isolate-scope']/div[@id='myscheduleCard']/md-card[@class='_md']/md-card-actions[@class='layout-align-start-center layout-row']/a[@class='md-raised md-primary md-button md-ink-ripple']")
 
@@ -43,8 +42,8 @@ def searchSeats(username,password,courseCode):
 
         ele.click()
 
-        ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body ng-scope layout-row registration']/div[@class='layout-column flex']/md-content[@id='main']/div[@class='ng-scope flex-noshrink']/section[@class='search-layout ng-scope flex-none']/md-content[@class='center-content _md layout-row flex reg-content']/div[@id='ufSOC']/uf-semesters/div[@id='subHeader']/button[@class='md-button md-ink-ripple']")
-        ele.click()
+        # ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body ng-scope layout-row registration']/div[@class='layout-column flex']/md-content[@id='main']/div[@class='ng-scope flex-noshrink']/section[@class='search-layout ng-scope flex-none']/md-content[@class='center-content _md layout-row flex reg-content']/div[@id='ufSOC']/uf-semesters/div[@id='subHeader']/button[@class='md-button md-ink-ripple']")
+        # ele.click()
 
         ele = Select(driver.find_element_by_id("progLevel"))
         ele.select_by_value("UGRD")
@@ -70,15 +69,16 @@ def searchSeats(username,password,courseCode):
         print "Script failure after login"
         print(ex)
         traceback.print_exc()
-        driver.close()
-        return {"id":4,"seats":""}
+        #driver.close()
+        return {"id":4,"seats":"", "registered":False}
 
     if seats == "Open Seats: 0":
-        print "booty"
+
         driver.close();
-        return {"id":2,"seats":seats}
+        return {"id":2,"seats":seats, "registered":False}
+
     else:
-        #setup email for success
+
         try:
             ele = driver.find_element_by_class_name("section-add-section")
             ele.click()
@@ -89,7 +89,7 @@ def searchSeats(username,password,courseCode):
             driver.close()
             print(ex)
             print "Open seat but script failure before registration"
-            return {"id":3,"seats":seats}
+            return {"id":3,"seats":seats, "registered":False}
         driver.close()
         print seats
-        return {"id":1,"seats":seats}
+        return {"id":1,"seats":seats, "registered":True}

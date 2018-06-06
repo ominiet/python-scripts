@@ -7,7 +7,7 @@ if __name__ == '__main__':
     #get credentials or set up if first run
     mycred = cred.getCreds()
     #run the selenium script
-    results = CFscript.searchSeats(mycred["glusername"], mycred["glpassword"], mycred["courseCode"])
+    results = CFscript.searchSeats(mycred["glusername"], mycred["glpassword"], mycred["courseCode"], mycred["registered"])
 
 
     logger.createLogEntry(results)
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     else:
         logSize = logger.getNumberOfEntries()
-        if logSize >= 48:
-            entries = logger.getAll(entries, mycred["gmailusername"], mycred["gmailPassword"], mycred["recipient"])
-            emailer.doBasicEmail()
+        if logSize >= 24:
+            entries = logger.getAll()
+            emailer.doBasicEmail(entries, mycred["gmailusername"], mycred["gmailPassword"], mycred["recipient"])
             logger.clearLog()

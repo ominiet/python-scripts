@@ -17,6 +17,14 @@ def getCreds():
 		gpass = getpass.getpass("Enter your Gmail Password: ")
 		cCode = raw_input("Enter the exact course code you are looking for: ")
 		sendEmail = raw_input("Enter the email you want to send to: ")
+		autoReg = raw_input("Do you want to set up auto registration? ([Y] or [n])")
+		reg = True
+		if autoReg == "Y":
+			reg = False
+		elif autoReg == "n":
+			reg = True
+		else:
+			print "Neither option was picked. Defaulting to non-auto"
 
 		cred = {
 			"glusername": username,
@@ -24,7 +32,8 @@ def getCreds():
 			"gmailusername":gusername,
 			"gmailPassword":gpass,
 			"courseCode":cCode,
-			"recipient":sendEmail
+			"recipient":sendEmail,
+			"registered":reg
 			}
 		pickle.dump(cred,fp)
 		fp.close()
