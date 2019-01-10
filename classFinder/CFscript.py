@@ -30,11 +30,12 @@ def searchSeats(username,password,courseCode,registered):
         driver.close()
         return {"id":5,"seats":"", "registered": False}
     try:
-        ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body layout-row']/div[@class='layout-column flex']/md-content[@id='main']/root[@id='root']/div[@class='ng-scope']/uf-tab[@class='ng-scope ng-isolate-scope']/md-tabs[@id='ufTab']/md-tabs-content-wrapper[@class='_md']/md-tab-content[@id='tab-content-4']/div[@class='ng-scope ng-isolate-scope']/div[@class='ng-scope']/uf-panel[@class='ng-isolate-scope']/div[@id='ufPanel']/md-grid-list[@class='ng-scope ng-isolate-scope _md']/md-grid-tile[@class='ng-scope ng-isolate-scope'][2]/figure/uf-card[@class='uf-card card-wrapper ng-scope ng-isolate-scope']/div[@class='card-wrapper']/div[@class='card-wrapper ng-scope']/myschedule-card[@class='ng-scope ng-isolate-scope']/div[@id='myscheduleCard']/md-card[@class='_md']/md-card-actions[@class='layout-align-start-center layout-row']/a[@class='md-raised md-primary md-button md-ink-ripple']")
+        # ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body layout-row']/div[@class='layout-column flex']/md-content[@id='main']/root[@id='root']/div[@class='ng-scope']/uf-tab[@class='ng-scope ng-isolate-scope']/md-tabs[@id='ufTab']/md-tabs-content-wrapper[@class='_md']/md-tab-content[@id='tab-content-4']/div[@class='ng-scope ng-isolate-scope']/div[@class='ng-scope']/uf-panel[@class='ng-isolate-scope']/div[@id='ufPanel']/md-grid-list[@class='ng-scope ng-isolate-scope _md']/md-grid-tile[@class='ng-scope ng-isolate-scope'][2]/figure/uf-card[@class='uf-card card-wrapper ng-scope ng-isolate-scope']/div[@class='card-wrapper']/div[@class='card-wrapper ng-scope']/myschedule-card[@class='ng-scope ng-isolate-scope']/div[@id='myscheduleCard']/md-card[@class='_md']/md-card-actions[@class='layout-align-start-center layout-row']/a[@class='md-raised md-primary md-button md-ink-ripple']")
+        #
+        # ele.click()
+        driver.get("https://one.uf.edu/myschedule/")
 
-        ele.click()
-
-        ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body ng-scope layout-row']/div[@class='layout-column flex']/md-content[@id='main']/div[@class='ng-scope flex-noshrink']/div[@id='termContainer']/md-card[@class='uf-card ng-scope _md flex-xs-100 flex-sm-45 flex-gt-sm-30'][2]/md-card-action[@class='layout-align-start-end layout-row']/a[@class='md-raised md-primary md-button ng-scope md-ink-ripple']")
+        ele = driver.find_element_by_xpath("/html[@class='ng-scope']/body[@class='uf-body ng-scope layout-row']/div[@class='layout-column flex']/md-content[@id='main']/div[@class='ng-scope flex-noshrink']/div[@id='termContainer']/md-card[@class='uf-card ng-scope _md flex-xs-100 flex-sm-45 flex-gt-sm-30']/md-card-action[@class='layout-align-start-start layout-column']/a[@class='md-raised md-primary md-button ng-scope md-ink-ripple']")
 
         ele.click()
 
@@ -80,10 +81,13 @@ def searchSeats(username,password,courseCode,registered):
     else:
 
         try:
-            ele = driver.find_element_by_class_name("section-add-section")
+            ele = driver.find_element_by_class_name("section-add-section ng-scope")
             ele.click()
 
-            ele = driver.find_element_by_class_name("modal-confirm-button")
+            ele = driver.find_element_by_class_name("btn btn-primary modal-confirm-btn")
+            ele.click()
+
+            ele = driver.find_element_by_class_name("btn btn-primary modal-confirm-btn ng-scope")
             ele.click()
         except Exception as ex:
             driver.close()

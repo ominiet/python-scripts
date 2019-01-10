@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def entryToString(entry):
-    myString = "------------------------------------------\n"
+    myString = "\n------------------------------------------\n"
     myString += "Run " + str(entry["_id"]) + " exited with code [%i]. " % entry["returnCode"]
     codeMeanings = {
         1:"Success! You are now registered for the Class",
@@ -14,7 +14,7 @@ def entryToString(entry):
     }
     myString += "\n Excecution Time: " + entry["runTime"].strftime("%B %d, %Y %I:%M") + "\n" + "Status Code Meaning: "
     myString += codeMeanings[entry["returnCode"]]
-    myString += "------------------------------------------\n"
+    myString += "\n------------------------------------------\n"
 
     return myString
 
